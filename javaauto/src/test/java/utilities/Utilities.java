@@ -24,27 +24,4 @@ public class Utilities {
 
 		return new ChromeDriver();
 	}
-	
-	public static void fillOutForm(HashMap<WebElement, Object> elementsAndValues) {
-		for(Map.Entry<WebElement, Object> entry : elementsAndValues.entrySet()) {
-			WebElement element = entry.getKey();
-			Object value = entry.getValue();
-			
-			// set value based on element type
-			if(element.getTagName().equals("input") 
-					|| element.getTagName().equals("textarea")) {
-				element.sendKeys(value.toString());
-			}
-			
-			// TODO - drop down list
-			if(element.getTagName().equals("")) {
-				
-			}
-			
-			// TODO - checkbox/radio button
-			if(element.getTagName().equals("")) {
-				
-			}
-		}
-	}
 }

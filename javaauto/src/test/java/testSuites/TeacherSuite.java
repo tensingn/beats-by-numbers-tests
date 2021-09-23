@@ -1,7 +1,6 @@
 package testSuites;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -28,5 +27,10 @@ public class TeacherSuite {
 	@Test
 	public static void login_Unsuccessful_IncorrectPassword() {
 		Auth.login_Unsuccessful_IncorrectPassword(driver, user);
+	}
+	
+	@Test
+	public static void loginUnsuccessful_IncorrectEmail() {
+		Auth.login_Unsuccessful_IncorrectEmail(driver, user);
 	}
 }

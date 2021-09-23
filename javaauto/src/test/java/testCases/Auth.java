@@ -1,11 +1,16 @@
 package testCases;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import forms.Forms;
 import javaauto.elements.CommonElements;
 import javaauto.elements.NavBarElements;
 import objects.User;
@@ -24,16 +29,21 @@ public class Auth {
 		// click login button
 		NavBarElements.button_ByName(driver, "Login").click();
 		
-		// enter username and password
-		CommonElements.textField_ByLabel(driver, "Email").sendKeys(tester.getEmail());
-		CommonElements.textField_ByLabel(driver, "Password").sendKeys(tester.getPassword());
+		// fill out login form
+		Forms.fillOut(
+				Forms.login(driver), 
+				new ArrayList<Object>(Arrays.asList(tester.getEmail(), tester.getPassword()))
+		);
 		
 		// click login
 		CommonElements.button_ByText(driver, "Login").click();
 		
 		// verify login is successful (i.e. logout button is displayed)
-		if(!NavBarElements.button_ByName(driver, "Logout").isDisplayed()) {
-			Assert.fail("Step 1 failed. Login successful.");
+		WebDriverWait wait = new WebDriverWait(driver, standardWait);
+		try {
+			wait.until(ExpectedConditions.visibilityOf(NavBarElements.button_ByName(driver, "Logout")));
+		} catch(Exception e) {
+			Assert.fail("Step 1 failed. Login unsuccessful.");
 		}
 	}
 	
@@ -49,16 +59,59 @@ public class Auth {
 		// click login button
 		NavBarElements.button_ByName(driver, "Login").click();
 		
-		// enter username and password
-		CommonElements.textField_ByLabel(driver, "Email").sendKeys(tester.getEmail());
-		CommonElements.textField_ByLabel(driver, "Password").sendKeys("wrong password");
+		// fill out login form
+		Forms.fillOut(
+				Forms.login(driver), 
+				new ArrayList<Object>(Arrays.asList(tester.getEmail(), tester.getPassword()))
+		);
 		
 		// click login
 		CommonElements.button_ByText(driver, "Login").click();
 		
-		// verify login is unsuccessful (i.e. logout button is not displayed)
-		if(NavBarElements.button_ByName(driver, "Logout").isDisplayed()) {
-			Assert.fail("Step 1 failed. Login successful.");
+		// verify login is unsuccessful (i.e. alert is present and logout button is not displayed)
+		WebDriverWait wait = new WebDriverWait(driver, standardWait);
+		try {
+			// check for alert
+			wait.until(ExpectedConditions.alertIsPresent());
+			driver.switchTo().alert().accept();
+			
+			// check for logout button not displayed
+			if(NavBarElements.button_ByName(driver, "Logout").isDisplayed()) {
+				Assert.fail("Step 1 failed. Login successful.");
+			}
+		} catch(Exception e) {
+			Assert.fail("Step 1 failed. Alert not displayed.");
+		}
+	}
+	
+	
+	/*
+	 * Author: tensingn
+	 * Name: Login Unsuccessful - Incorrect Email
+	 * Description: Tests that a user cannot login with incorrect password.
+	 * Prerequisites: None
+	 * Notes: None
+	 */
+	public static void login_Unsuccessful_IncorrectEmail(WebDriver driver, User tester) {
+		// click login button
+		NavBarElements.button_ByName(driver, "Login").click();
+		
+		// fill out login form
+		Forms.fillOut(
+				Forms.login(driver), 
+				new ArrayList<Object>(Arrays.asList("wrongemail@wrong.com", tester.getPassword()))
+		);
+		
+		// click login
+		CommonElements.button_ByText(driver, "Login").click();
+		
+		// verify login is unsuccessful (i.e. alert is present and logout button is not displayed)
+		WebDriverWait wait = new WebDriverWait(driver, standardWait);
+		try {
+			wait.until(ExpectedConditions.invisibilityOf(NavBarElements.button_ByName(driver, "Login")));
+			Assert.fail("Step 1 failed. Login unsuccessful.");
+		} catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

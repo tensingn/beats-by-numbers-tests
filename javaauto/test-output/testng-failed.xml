@@ -5,7 +5,7 @@
     <classes>
       <class name="testSuites.TeacherSuite">
         <methods>
-          <include name="login_Successful"/>
+          <include name="login_Unsuccessful_IncorrectPassword"/>
           <include name="setupDriver"/>
         </methods>
       </class> <!-- testSuites.TeacherSuite -->

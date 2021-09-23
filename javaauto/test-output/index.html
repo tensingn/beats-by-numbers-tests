@@ -101,7 +101,7 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="testSuites.TeacherSuite" class="method navigator-link" hash-for-method="login_Successful">login_Successful</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="testSuites.TeacherSuite" class="method navigator-link" hash-for-method="login_Unsuccessful_IncorrectPassword">login_Unsuccessful_IncorrectPassword</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -124,13 +124,13 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="login_Successful">
-                  </a> <!-- login_Successful -->
-                  <span class="method-name">login_Successful</span>
-                  <div class="stack-trace">java.lang.AssertionError: Step 1 failed. Login successful.
+                  <a name="login_Unsuccessful_IncorrectPassword">
+                  </a> <!-- login_Unsuccessful_IncorrectPassword -->
+                  <span class="method-name">login_Unsuccessful_IncorrectPassword</span>
+                  <div class="stack-trace">java.lang.AssertionError: Step 1 failed. Alert not displayed.
 	at org.testng.Assert.fail(Assert.java:94)
-	at testCases.Auth.login_Successful(Auth.java:36)
-	at testSuites.TeacherSuite.login_Successful(TeacherSuite.java:25)
+	at testCases.Auth.login_Unsuccessful_IncorrectPassword(Auth.java:83)
+	at testSuites.TeacherSuite.login_Unsuccessful_IncorrectPassword(TeacherSuite.java:29)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:78)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -164,7 +164,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">/private/var/folders/_6/5rg03hg555s5nh95l50wzp4r0000gn/T/testng-eclipse--1093620403/testng-customsuite.xml</span>
+            <span class="header-content">/private/var/folders/_6/5rg03hg555s5nh95l50wzp4r0000gn/T/testng-eclipse--321749294/testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -175,7 +175,7 @@
     &lt;classes&gt;
       &lt;class name=&quot;testSuites.TeacherSuite&quot;&gt;
         &lt;methods&gt;
-          &lt;include name=&quot;login_Successful&quot;/&gt;
+          &lt;include name=&quot;login_Unsuccessful_IncorrectPassword&quot;/&gt;
         &lt;/methods&gt;
       &lt;/class&gt; &lt;!-- testSuites.TeacherSuite --&gt;
     &lt;/classes&gt;
@@ -219,14 +219,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'login_Successful')
+data.setCell(0, 1, 'login_Unsuccessful_IncorrectPassword')
 data.setCell(0, 2, 'testSuites.TeacherSuite')
-data.setCell(0, 3, 997);
+data.setCell(0, 3, 11315);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 997 ms</span>
+              <span class="suite-total-time">Total running time: 11 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -241,13 +241,15 @@ return data;
         </div> <!-- panel -->
         <div panel-name="ignored-methods-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">1 ignored method</span>
+            <span class="header-content">2 ignored methods</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="ignored-class-div">
               <span class="ignored-class-name">testSuites.TeacherSuite</span>
               <div class="ignored-methods-div">
-                <span class="ignored-method-name">login_Unsuccessful_IncorrectPassword</span>
+                <span class="ignored-method-name">loginUnsuccessful_IncorrectEmail</span>
+                <br/>
+                <span class="ignored-method-name">login_Successful</span>
                 <br/>
               </div> <!-- ignored-methods-div -->
             </div> <!-- ignored-class-div -->
@@ -267,8 +269,8 @@ return data;
               <div class="test-method">
                 <img src="failed.png">
                 </img>
-                <span class="method-name">login_Successful</span>
-                <span class="method-start">5021 ms</span>
+                <span class="method-name">login_Unsuccessful_IncorrectPassword</span>
+                <span class="method-start">6091 ms</span>
               </div> <!-- test-method -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
